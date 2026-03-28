@@ -1,0 +1,5 @@
+para agregar code
+primero agregas 
+git add .
+git commit -m ""
+git push
