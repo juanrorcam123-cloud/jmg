@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
-      :root {
-        --bs-body-bg: #0f1111;
-      }
+      :root { --bs-body-bg: #0f1111; }
 
       /* --- Carrusel Principal --- */
       #movieCarousel .carousel-item img {
@@ -27,37 +25,17 @@
       }
       .carousel-caption {
         text-align: left;
-        left: 5%;
-        right: 5%;
-        bottom: 5%;
+        left: 5%; right: 5%; bottom: 5%;
         padding: 25px;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
         border-radius: 15px;
       }
 
-      /* --- Lista lateral "A continuación" --- */
-      .next-movies-container {
-        max-height: 500px;
-        overflow-y: hidden;
-      }
-      .movie-side-card {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 10px;
-        transition: background 0.3s;
-      }
-      .movie-side-card:hover {
-        background: rgba(255, 255, 255, 0.05);
-      }
-      .movie-side-card img {
-        width: 70px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 5px;
-      }
+      /* --- Lista lateral --- */
+      .next-movies-container { max-height: 500px; overflow-y: hidden; }
+      .movie-side-card { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding: 10px; border-radius: 10px; transition: background 0.3s; }
+      .movie-side-card:hover { background: rgba(255, 255, 255, 0.05); }
+      .movie-side-card img { width: 70px; height: 100px; object-fit: cover; border-radius: 5px; }
       .movie-side-info h6 { margin: 0; font-size: 0.9rem; font-weight: bold; }
       .movie-side-info p { margin: 0; font-size: 0.8rem; color: #bbb; }
 
@@ -66,43 +44,56 @@
       .featured-card:hover { transform: scale(1.02); }
       .featured-img-container { position: relative; overflow: hidden; border-radius: 12px; }
       .featured-img-container img { height: 300px; width: 100%; object-fit: cover; display: block; }
-      .overlay-text {
-        position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
-        background: linear-gradient(transparent, rgba(0,0,0,0.9));
-      }
+      .overlay-text { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
 
       /* --- Sección Celebridades --- */
       .section-header { display: flex; align-items: center; margin-bottom: 5px; }
       .yellow-line { width: 4px; height: 28px; background-color: #ffc107; margin-right: 12px; border-radius: 2px; }
-      
-      .celebrity-scroll {
-        display: flex; overflow-x: auto; gap: 20px; padding: 20px 0;
-        scroll-behavior: smooth; scrollbar-width: none;
-      }
+      .celebrity-scroll { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scroll-behavior: smooth; scrollbar-width: none; }
       .celebrity-scroll::-webkit-scrollbar { display: none; }
-      
       .celebrity-item { flex: 0 0 auto; width: 150px; text-align: center; cursor: pointer; }
-      .celeb-img-wrapper {
-        width: 140px; height: 140px; border-radius: 50%; overflow: hidden;
-        margin-bottom: 10px; border: 2px solid rgba(255,255,255,0.1);
-      }
+      .celeb-img-wrapper { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin-bottom: 10px; border: 2px solid rgba(255,255,255,0.1); }
       .celeb-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: all 0.3s ease; }
       .celebrity-item:hover img { transform: scale(1.15); filter: brightness(0.7); }
-      .celeb-name { font-size: 0.9rem; font-weight: 500; color: white; }
+
+      /* --- Qué ver --- */
+      .thin-orange-line { width: 100%; height: 1px; background-color: #ffc107; opacity: 0.6; }
+      .btn-login-custom { background-color: #2a2d2d; color: #0d6efd; font-weight: bold; border: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; }
+      .btn-login-custom:hover { background-color: #3a3d3d; color: #0d6efd; }
+
+      /* --- Mejores 10 (Zoom y Oscurecimiento) --- */
+      .top-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden; display: flex; height: 260px; }
+      
+      /* Contenedor del póster para el efecto */
+      .poster-wrapper { width: 40%; overflow: hidden; cursor: pointer; position: relative; }
+      .top-poster { width: 100%; height: 100%; object-fit: cover; transition: all 0.4s ease; }
+      .poster-wrapper:hover .top-poster { transform: scale(1.1); filter: brightness(0.6); }
+
+      .top-content { width: 60%; padding: 15px; position: relative; }
+      .top-rank-badge { position: absolute; top: 10px; right: 10px; background: #ffc107; color: #000; font-weight: bold; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.75rem; z-index: 3; }
+      .synopsis-text { font-size: 0.7rem; color: #bbb; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+      .col-3-5 { flex: 0 0 auto; width: 29.16%; }
+      .col-5 { flex: 0 0 auto; width: 41.66%; }
+
+      /* Grid 7 para puestos 4-10 */
+      .grid-7-container { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 20px; }
+      .mini-top-card { position: relative; height: 180px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
+      .mini-top-card img { width: 100%; height: 100%; object-fit: cover; transition: all 0.4s ease; }
+      .mini-top-card:hover img { transform: scale(1.1); filter: brightness(0.6); }
+      
+      .mini-rank-badge { position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.8); color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; z-index: 2; }
+      .mini-title-box { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(42, 45, 45, 0.9); padding: 5px; text-align: center; z-index: 3; }
+      .mini-title-box span { font-size: 0.65rem; color: #eee; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     </style>
   </head>
   <body>
 
     <nav class="navbar navbar-expand-lg bg-dark-subtle border-bottom border-body p-3 rounded-bottom-4 shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">
-          <img src="icon.png" alt="Logo" width="60" height="37" class="d-inline-block align-text-top me-2">
-        </a>
+        <a class="navbar-brand fw-bold" href="#"><img src="icon.png" alt="Logo" width="60" height="37" class="me-2"></a>
         <div class="d-flex align-items-center ms-auto">
-          <ul class="navbar-nav me-3">
-            <li class="nav-item"><a class="nav-link" href="#">Iniciar Sesión</a></li>
-          </ul>
-          <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" type="button">ES</button>
+          <ul class="navbar-nav me-3"><li class="nav-item"><a class="nav-link" href="#">Iniciar Sesión</a></li></ul>
+          <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">ES</button>
         </div>
       </div>
     </nav>
@@ -111,29 +102,16 @@
       <div class="row g-4">
         <div class="col-lg-8">
           <div id="movieCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner" id="carousel-content">
-              <div class="carousel-item active">
-                <div class="d-flex align-items-center justify-content-center" style="height: 500px; background: #222;">
-                  <div class="spinner-border text-primary" role="status"></div>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </button>
+            <div class="carousel-inner" id="carousel-content"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
           </div>
         </div>
-
         <div class="col-lg-4 d-flex flex-column">
           <h5 class="text-warning fw-bold mb-3">A continuación</h5>
           <div id="next-movies-list" class="next-movies-container flex-grow-1"></div>
           <div class="mt-3">
-            <button class="btn btn-link text-white fw-bold text-decoration-none p-0">
-              Explorar Tráileres <i class="bi bi-chevron-right"></i>
-            </button>
+            <button class="btn btn-link text-white fw-bold text-decoration-none p-0">Explorar Tráileres <i class="bi bi-chevron-right"></i></button>
           </div>
         </div>
       </div>
@@ -141,21 +119,19 @@
       <hr class="text-secondary my-5" style="opacity: 0.3;">
 
       <div class="row">
-        <div class="col-12 mb-4">
-          <h4 class="text-warning fw-bold">Destacado Hoy</h4>
-        </div>
+        <div class="col-12 mb-4"><h4 class="text-warning fw-bold">Destacado Hoy</h4></div>
         <div class="col-md-6 mb-4">
           <div class="featured-card">
-            <div class="featured-img-container" style="background-color: #222;">
-              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1000" alt="Galería">
+            <div class="featured-img-container">
+              <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1000">
               <div class="overlay-text"><span class="text-white fw-bold"><i class="bi bi-images me-2"></i>Mirar galería</span></div>
             </div>
           </div>
         </div>
         <div class="col-md-6 mb-4">
           <div class="featured-card">
-            <div class="featured-img-container" style="background-color: #222;">
-              <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=1000" alt="Encuestas">
+            <div class="featured-img-container">
+              <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=1000">
               <div class="overlay-text"><span class="text-white fw-bold"><i class="bi bi-patch-check me-2"></i>Encuesta de la semana</span></div>
             </div>
           </div>
@@ -171,17 +147,43 @@
             <h4 class="text-white fw-bold mb-0">Celebridades más populares <i class="bi bi-chevron-right fs-5"></i></h4>
           </div>
           <div class="d-flex justify-content-between align-items-center mt-2">
-             <p class="text-secondary mb-0">Los mejores en Ascenso</p>
-             <p class="text-secondary mb-0">por posición</p>
-             <div style="width: 100px;"></div>
+            <p class="text-secondary mb-0 small">Los mejores en Ascenso</p>
+            <p class="text-secondary mb-0 small">por posición</p>
+            <div style="width: 100px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="position-relative mb-5">
+        <div class="celebrity-scroll" id="celebScroll"></div>
+        <button class="btn btn-dark btn-sm rounded-circle position-absolute top-50 start-0 translate-middle-y" onclick="scrollCelebs(-400)" style="z-index: 5;"><i class="bi bi-chevron-left"></i></button>
+        <button class="btn btn-dark btn-sm rounded-circle position-absolute top-50 end-0 translate-middle-y" onclick="scrollCelebs(400)" style="z-index: 5;"><i class="bi bi-chevron-right"></i></button>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12">
+          <h4 class="text-warning fw-bold mb-1">Qué ver</h4>
+          <div class="section-header">
+            <div class="yellow-line"></div>
+           <h5 class="text-white mb-4">De tu lista de videos</h5>
+          </div>
+          <div class="text-center p-5 rounded-3">
+            <i class="bi bi-bookmark-plus text-secondary fs-1 mb-3"></i>
+            <h6 class="text-white fw-bold">Inicia sesión para acceder a la lista de visualización</h6>
+            <p class="text-secondary small mb-4">Guarda programas y películas para hacer un seguimiento de lo que quieres ver</p>
+            <button class="btn btn-login-custom px-4 py-2">Iniciar Sesión</button>
           </div>
         </div>
       </div>
 
-      <div class="position-relative">
-        <div class="celebrity-scroll" id="celebScroll"></div>
-        <button class="btn btn-dark btn-sm rounded-circle position-absolute top-50 start-0 translate-middle-y" onclick="scrollCelebs(-400)" style="z-index: 5;"><i class="bi bi-chevron-left"></i></button>
-        <button class="btn btn-dark btn-sm rounded-circle position-absolute top-50 end-0 translate-middle-y" onclick="scrollCelebs(400)" style="z-index: 5;"><i class="bi bi-chevron-right"></i></button>
+      <div class="row mt-5 pb-5">
+        <div class="col-12 mb-4">
+          <div class="section-header">
+            <div class="yellow-line"></div>
+            <h4 class="text-white fw-bold mb-0">Mejores 10 en el Cine esta semana</h4>
+          </div>
+        </div>
+        <div class="row g-3" id="top-1-3-container"></div>
+        <div class="grid-7-container" id="top-4-10-container"></div>
       </div>
     </div>
 
@@ -191,41 +193,42 @@
       const carouselContent = document.getElementById('carousel-content');
       const nextMoviesList = document.getElementById('next-movies-list');
       const celebScroll = document.getElementById('celebScroll');
+      const top13Container = document.getElementById('top-1-3-container');
+      const top410Container = document.getElementById('top-4-10-container');
       let allMovies = [];
 
       async function fetchData() {
         try {
-          // Cargar Películas
           const resMovies = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=es-MX&region=MX`);
           const dataMovies = await resMovies.json();
           if(dataMovies.results) {
-            allMovies = dataMovies.results.slice(0, 6);
+            allMovies = dataMovies.results;
             renderMovies();
             updateSidebar(0);
+            renderTop10();
           }
 
-          // Cargar Celebridades
           const resCelebs = await fetch(`https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=es-MX`);
           const dataCelebs = await resCelebs.json();
           if(dataCelebs.results) {
             celebScroll.innerHTML = dataCelebs.results.slice(0, 24).map(person => `
               <div class="celebrity-item">
-                <div class="celeb-img-wrapper"><img src="https://image.tmdb.org/t/p/w200${person.profile_path}" alt="${person.name}"></div>
-                <div class="celeb-name">${person.name}</div>
+                <div class="celeb-img-wrapper"><img src="https://image.tmdb.org/t/p/w200${person.profile_path}" onerror="this.src='https://via.placeholder.com/200'"></div>
+                <div class="celeb-name text-white small">${person.name}</div>
               </div>
             `).join('');
           }
-        } catch (e) { console.error("Error:", e); }
+        } catch (e) { console.error(e); }
       }
 
       function renderMovies() {
-        carouselContent.innerHTML = allMovies.map((movie, index) => `
+        carouselContent.innerHTML = allMovies.slice(0,6).map((movie, index) => `
           <div class="carousel-item ${index === 0 ? 'active' : ''}">
             <img src="https://image.tmdb.org/t/p/original${movie.backdrop_path}" class="d-block w-100">
             <div class="carousel-caption">
               <span class="badge bg-primary mb-2">Rating: ${movie.vote_average}</span>
-              <h3 class="fw-bold text-white">${movie.title || movie.original_title}</h3>
-              <p class="d-none d-md-block opacity-75 text-white">${movie.overview ? movie.overview.substring(0, 150) : 'Sin descripción...'}...</p>
+              <h3 class="fw-bold text-white">${movie.title}</h3>
+              <p class="d-none d-md-block opacity-75 text-white">${movie.overview.substring(0, 150)}...</p>
               <div class="mt-2">
                 <button class="btn btn-primary btn-sm rounded-pill px-3"><i class="bi bi-play-fill"></i> Ver ahora</button>
                 <span class="ms-2 text-white-50"><small>Mira el trailer</small></span>
@@ -243,20 +246,40 @@
             <div class="movie-side-card">
               <img src="https://image.tmdb.org/t/p/w200${m.poster_path}">
               <div class="movie-side-info">
-                <h6>${m.title || m.original_title}</h6>
+                <h6>${m.title}</h6>
                 <p>Duración: 124 min</p>
-                <div class="d-flex align-items-center mt-1">
-                  <i class="bi bi-play-circle-fill fs-5 text-light"></i>
-                  <span class="ms-2 small opacity-75">Mira el trailer</span>
-                </div>
+                <div class="d-flex align-items-center mt-1"><i class="bi bi-play-circle-fill text-light"></i><span class="ms-2 small opacity-75">Trailer</span></div>
               </div>
             </div>`;
         }
         nextMoviesList.innerHTML = html;
       }
 
-      function scrollCelebs(dist) { celebScroll.scrollBy({ left: dist, behavior: 'smooth' }); }
+      function renderTop10() {
+        top13Container.innerHTML = allMovies.slice(0, 3).map((m, i) => `
+          <div class="${i === 0 ? 'col-5' : 'col-3-5'}">
+            <div class="top-card">
+              <div class="poster-wrapper">
+                <img src="https://image.tmdb.org/t/p/w500${m.poster_path}" class="top-poster">
+              </div>
+              <div class="top-content">
+                <div class="top-rank-badge">#${i+1}</div>
+                <h6 class="fw-bold mb-1">${m.title}</h6>
+                <div class="mb-2 small"><i class="bi bi-star-fill text-warning"></i> ${m.vote_average}</div>
+                <p class="synopsis-text">${m.overview}</p>
+              </div>
+            </div>
+          </div>`).join('');
 
+        top410Container.innerHTML = allMovies.slice(3, 10).map((m, i) => `
+          <div class="mini-top-card">
+            <div class="mini-rank-badge">#${i+4}</div>
+            <img src="https://image.tmdb.org/t/p/w400${m.poster_path}">
+            <div class="mini-title-box"><span>${m.title}</span></div>
+          </div>`).join('');
+      }
+
+      function scrollCelebs(dist) { celebScroll.scrollBy({ left: dist, behavior: 'smooth' }); }
       document.getElementById('movieCarousel').addEventListener('slide.bs.carousel', e => updateSidebar(e.to));
       fetchData();
     </script>
